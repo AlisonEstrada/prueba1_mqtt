@@ -1,6 +1,6 @@
 var mqtt = require('mqtt'), url = require('url');
 // Parse
-var mqtt_url = url.parse(process.env.CLOUDAMQP_MQTT_URL || 'mqtt://localhost:1883');
+/*var mqtt_url = url.parse(process.env.CLOUDAMQP_MQTT_URL || 'mqtt://localhost:1883');
 var auth = (mqtt_url.auth || ':').split(':');
 var url = "mqtt://" + mqtt_url.host;
 
@@ -10,10 +10,21 @@ var options = {
   clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
   username: auth[0],
   password: auth[1],
-};
+};*/
+
+var options = {
+  clean: true, // retain session
+  connectTimeout: 4000, // Timeout period
+  // Authentication information
+  clientId: 'emqx_test',
+  username: 'emqx_test',
+  password: 'emqx_test',
+}
+const connectUrl = 'wss://broker.emqx.io:8084/mqtt'
+const client = mqtt.connect(connectUrl, options)
 
 // Create a client connection
-var client = mqtt.connect(url, options);
+//var client = mqtt.connect(url, options);
 console.log("Cliente no conectado");
 
 client.on('connect', function() { // When connected
