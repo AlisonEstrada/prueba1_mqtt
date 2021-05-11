@@ -20,7 +20,7 @@ client.on('connect', function() { // When connected
     console.log("Cliente conectado");
 
   // subscribe to a topic
-  client.subscribe('hello/world', function() {
+  client.subscribe('esp32/test', function() {
     // when a message arrives, do something with it
     client.on('message', function(topic, message, packet) {
       console.log("Received '" + message + "' on '" + topic + "'");
@@ -28,8 +28,8 @@ client.on('connect', function() { // When connected
   });
 
   // publish a message to a topic
-  client.publish('hello/world', 'my message', function() {
+  /*client.publish('hello/world', 'my message', function() {
     console.log("Message is published");
     client.end(); // Close the connection when published
-  });
+  });*/
 });
